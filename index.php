@@ -7,9 +7,10 @@
     justify-content: center;
     position: relative;
     height: 100%;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 160% 100%;
     overflow: hidden;
    "
 >
@@ -28,8 +29,8 @@
         src="wt.png"
         style="
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
             z-index: 2;
             overflow: hidden;
@@ -77,15 +78,16 @@
         
         analyser.getByteFrequencyData(fbc);
         avg = fbc.reduce((a,b) => a + b, 0) / fbc.length;
-        document.getElementById('img').style.width = avg * 5
+        document.getElementById('img').style.width = (200 + (avg * 4))
         //  document.getElementById('img').style.width = (document.getElementById('img').style.width - avg)
         console.log(avg/5)
         document.getElementById('img2').style.transform = rotes; 
         // document.body.style.backgroundColor =
         // 'rgb('+avg+','+avg+','+avg+')'
-        dum = 100 + (avg/5);
+        dum = 160 + (avg/5);
+        dum2 = 100 + (avg/5);
         document.body.style.backgroundImage = "url('rain.jpg')";
-        document.body.style.backgroundSize = dum+"% "+dum+"%";
+        document.body.style.backgroundSize = dum+"% "+dum2+"%";
         
     }
 </script>
