@@ -28,9 +28,11 @@
         src="wt.png"
         style="
             position: absolute;
-            height: 100%;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
             z-index: 2;
+            overflow: hidden;
         "
     />
     <!-- <h1 id="play" style="
@@ -50,17 +52,20 @@
 <script>
     
     var rote = 0;
-    
+    var pl = 0;
     document.getElementById('img').onclick = function(){
-        var audio = new Audio();
-        audio.src = "mt4.mp3";
-        context = new AudioContext();
-        audio.muted = false;
-        analyser = context.createAnalyser();
-        context.createMediaElementSource(audio).connect(analyser);
-        analyser.connect(context.destination);
-        audio.play();
-        loop();
+        pl=1;
+        if(pl==1){
+            var audio = new Audio();
+            audio.src = "mt4.mp3";
+            context = new AudioContext();
+            audio.muted = false;
+            analyser = context.createAnalyser();
+            context.createMediaElementSource(audio).connect(analyser);
+            analyser.connect(context.destination);
+            audio.play();
+            loop();
+        }
     }
     
     function loop() {
@@ -69,16 +74,18 @@
         rotes = "rotate("+rote+"deg)"
         window.requestAnimationFrame(loop);
         fbc = new Uint8Array(analyser.frequencyBinCount);
+        
         analyser.getByteFrequencyData(fbc);
         avg = fbc.reduce((a,b) => a + b, 0) / fbc.length;
         document.getElementById('img').style.width = avg * 5
         //  document.getElementById('img').style.width = (document.getElementById('img').style.width - avg)
-        
+        console.log(avg/5)
         document.getElementById('img2').style.transform = rotes; 
         // document.body.style.backgroundColor =
         // 'rgb('+avg+','+avg+','+avg+')'
-        dum = 100 + avg/5;
+        dum = 100 + (avg/5);
         document.body.style.backgroundImage = "url('rain.jpg')";
-        document.body.style.backgroundSize = dum+"%";
+        document.body.style.backgroundSize = dum+"% "+dum+"%";
+        
     }
 </script>
