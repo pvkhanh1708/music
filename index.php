@@ -19,7 +19,7 @@
         src="xt.png"
         style="
             position: absolute;
-            width: 200px;
+            width: 400px;
             border-radius: 50%;
             z-index: 5;
         "
@@ -29,8 +29,8 @@
         src="wt.png"
         style="
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: 1200px;
+            height: 1200px;
             border-radius: 50%;
             z-index: 2;
             overflow: hidden;
@@ -70,7 +70,6 @@
     }
     
     function loop() {
-        rote+=0.5;
         if(rote>360) rote = 0;
         rotes = "rotate("+rote+"deg)"
         window.requestAnimationFrame(loop);
@@ -78,9 +77,9 @@
         
         analyser.getByteFrequencyData(fbc);
         avg = fbc.reduce((a,b) => a + b, 0) / fbc.length;
-        document.getElementById('img').style.width = (200 + (avg * 4))
+        document.getElementById('img').style.width = (400 + (avg * 4))
         //  document.getElementById('img').style.width = (document.getElementById('img').style.width - avg)
-        console.log(avg/5)
+        rote+=(avg/10);
         document.getElementById('img2').style.transform = rotes; 
         // document.body.style.backgroundColor =
         // 'rgb('+avg+','+avg+','+avg+')'
