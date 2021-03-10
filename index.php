@@ -2,11 +2,14 @@
 <html>
 <body style="
     background-image: url('rain.jpg');
-    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: hidden;
    "
 >
@@ -30,7 +33,7 @@
             z-index: 2;
         "
     />
-    <h1 id="play" style="
+    <!-- <h1 id="play" style="
         position: absolute;
         height: 50px;
         width: 100px;
@@ -41,15 +44,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    ">Play</h1>
+    ">Play</h1> -->
 </body>
 </html>
 <script>
     
     var rote = 0;
     
-    document.getElementById('play').onclick = function(){
-        this.remove();
+    document.getElementById('img').onclick = function(){
         var audio = new Audio();
         audio.src = "mt4.mp3";
         context = new AudioContext();
