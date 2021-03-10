@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
    "
 >
     <img
@@ -29,13 +30,26 @@
             z-index: 2;
         "
     />
+    <h1 id="play" style="
+        position: absolute;
+        height: 50px;
+        width: 100px;
+        border-radius: 50%;
+        z-index: 10;
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    ">Play</h1>
 </body>
 </html>
 <script>
     
     var rote = 0;
     
-    document.onclick = function(){
+    document.getElementById('play').onclick = function(){
+        this.remove();
         var audio = new Audio();
         audio.src = "mt4.mp3";
         context = new AudioContext();
@@ -56,6 +70,7 @@
         analyser.getByteFrequencyData(fbc);
         avg = fbc.reduce((a,b) => a + b, 0) / fbc.length;
         document.getElementById('img').style.width = avg * 5
+        //  document.getElementById('img').style.width = (document.getElementById('img').style.width - avg)
         
         document.getElementById('img2').style.transform = rotes; 
         // document.body.style.backgroundColor =
