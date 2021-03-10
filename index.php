@@ -32,29 +32,25 @@
 </body>
 </html>
 <script>
-    audio = new Audio();
-    audio.src = "mt4.mp3";
-    analyser = null;
-    click = 0;
-    rote = 0;
-    document.getElementById('img').onclick = () => {
-        click++;
-        if(click<2){
-            context = new AudioContext()
-            analyser = context.createAnalyser()
-            context.createMediaElementSource(audio)
-            .connect(analyser)
-            analyser.connect(context.destination)
-            audio.play()
-            loop()
-        }
+    
+    var rote = 0;
+    
+    document.onclick = function(){
+        var audio = new Audio();
+        audio.src = "mt4.mp3";
+        context = new AudioContext();
+        audio.muted = false;
+        analyser = context.createAnalyser();
+        context.createMediaElementSource(audio).connect(analyser);
+        analyser.connect(context.destination);
+        audio.play();
+        loop();
     }
     
     function loop() {
         rote+=0.5;
         if(rote>360) rote = 0;
         rotes = "rotate("+rote+"deg)"
-        console.log(rotes)
         window.requestAnimationFrame(loop);
         fbc = new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(fbc);
