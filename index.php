@@ -24,7 +24,7 @@
         src="wt.png"
         style="
             position: absolute;
-            width: 650px;
+            height: 100%;
             border-radius: 50%;
             z-index: 2;
         "
@@ -37,7 +37,7 @@
     analyser = null;
     click = 0;
     rote = 0;
-    document.onclick = () => {
+    document.getElementById('img').onclick = () => {
         click++;
         if(click<2){
             context = new AudioContext()
